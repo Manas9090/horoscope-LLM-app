@@ -74,12 +74,12 @@ if st.button("Generate Horoscope"):
 
             # Zodiac Sign
             zodiac_sign = get_zodiac_sign(dob.day, dob.month)
-            st.image(image_links[zodiac_sign], caption=f"Your Zodiac Sign: {zodiac_sign}", use_column_width=True)
+            st.image(image_links[zodiac_sign], caption=f"Your Zodiac Sign: {zodiac_sign}", use_container_width=True)
 
             # Kundali Sign (Placeholder)
             kundali_sign = "Kanya (Virgo Rashi)"  # Ideally fetched from Astrology API
             st.image("https://upload.wikimedia.org/wikipedia/commons/f/fb/Virgo.svg",
-                     caption=f"Your Kundali Sign (Rashi): {kundali_sign}", use_column_width=True)
+                     caption=f"Your Kundali Sign (Rashi): {kundali_sign}", use_container_width=True)
 
             # Build Prompt
             if horoscope_type == "General Horoscope":
