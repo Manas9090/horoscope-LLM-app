@@ -38,6 +38,20 @@ image_links = {
     "Pisces": "https://www.astrology-zodiac-signs.com/images/pisces.png"
 }
 
+# Language Map for gTTS
+tts_language_map = {
+    "English": "en",
+    "Hindi": "hi",
+    "Bengali": "bn",
+    "Gujarati": "gu",
+    "Tamil": "ta",
+    "Telugu": "te",
+    "Kannada": "kn",
+    "Malayalam": "ml",
+    "Marathi": "mr",
+    "Punjabi": "pa"
+}
+
 # Streamlit Setup
 st.set_page_config(page_title="STAT-TECH-AI Horoscope", page_icon="🔮")
 st.markdown("""
@@ -59,6 +73,8 @@ elif horoscope_type == "Monthly Horoscope":
     target_month = st.selectbox("Select Month", ("January", "February", "March", "April", "May", "June",
                                                   "July", "August", "September", "October", "November", "December"))
     target_year = st.number_input("Select Year", min_value=1900, max_value=2100, value=date.today().year)
+
+language = st.selectbox("Choose Language:", list(tts_language_map.keys()))
 
 output_mode = st.selectbox("Choose Output Mode:", ("I want to read", "I want to listen", "I want to read and listen"))
 
@@ -82,12 +98,13 @@ if st.button("Generate Horoscope"):
                      caption=f"Your Kundali Sign (Rashi): {kundali_sign}", use_container_width=True)
 
             # Build Prompt
+            prompt = f"Prepare the horoscope in {language} language. "
             if horoscope_type == "General Horoscope":
-                prompt = f"Prepare a general horoscope for {name}, born {dob_str} at {tob_str} in {pob}. Include life insights."
+                prompt += f"General horoscope for {name}, born {dob_str} at {tob_str} in {pob}. Include life insights."
             elif horoscope_type == "Yearly Horoscope":
-                prompt = f"Prepare a horoscope for {name} for {target_year}, born {dob_str} at {tob_str} in {pob}."
+                prompt += f"Yearly horoscope for {name} for {target_year}, born {dob_str} at {tob_str} in {pob}."
             else:
-                prompt = f"Prepare a horoscope for {name} for {target_month} {target_year}, born {dob_str} at {tob_str} in {pob}."
+                prompt += f"Monthly horoscope for {name} for {target_month} {target_year}, born {dob_str} at {tob_str} in {pob}."
 
             with st.spinner("Consulting the stars..."):
                 response = openai.ChatCompletion.create(
@@ -106,7 +123,8 @@ if st.button("Generate Horoscope"):
                 st.write(horoscope)
 
             if output_mode in ["I want to listen", "I want to read and listen"]:
-                tts = gTTS(horoscope, lang='en')
+                tts_lang = tts_language_map.get(language, "en")
+                tts = gTTS(horoscope, lang=tts_lang)
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
                     tts.save(fp.name)
                     st.audio(open(fp.name, 'rb').read(), format='audio/mp3')
