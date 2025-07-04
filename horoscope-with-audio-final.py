@@ -38,6 +38,21 @@ image_links = {
     "Pisces": "https://www.astrology-zodiac-signs.com/images/pisces.png"
 }
 
+kundali_map = {
+    "Aries": "Mesh (Aries Rashi)",
+    "Taurus": "Vrishabh (Taurus Rashi)",
+    "Gemini": "Mithun (Gemini Rashi)",
+    "Cancer": "Karka (Cancer Rashi)",
+    "Leo": "Simha (Leo Rashi)",
+    "Virgo": "Kanya (Virgo Rashi)",
+    "Libra": "Tula (Libra Rashi)",
+    "Scorpio": "Vrishchik (Scorpio Rashi)",
+    "Sagittarius": "Dhanu (Sagittarius Rashi)",
+    "Capricorn": "Makar (Capricorn Rashi)",
+    "Aquarius": "Kumbh (Aquarius Rashi)",
+    "Pisces": "Meen (Pisces Rashi)"
+}
+
 # Language Map for gTTS
 tts_language_map = {
     "English": "en",
@@ -92,10 +107,9 @@ if st.button("Generate Horoscope"):
             zodiac_sign = get_zodiac_sign(dob.day, dob.month)
             st.image(image_links[zodiac_sign], caption=f"Your Zodiac Sign: {zodiac_sign}", use_container_width=True)
 
-            # Kundali Sign (Placeholder)
-            kundali_sign = "Kanya (Virgo Rashi)"  # Ideally fetched from Astrology API
-            st.image("https://www.astrology-zodiac-signs.com/images/virgo.png",
-                     caption=f"Your Kundali Sign (Rashi): {kundali_sign}", use_container_width=True)
+            # Kundali Sign Dynamic
+            kundali_sign = kundali_map.get(zodiac_sign, "Unknown Rashi")
+            st.image(image_links[zodiac_sign], caption=f"Your Kundali Sign (Rashi): {kundali_sign}", use_container_width=True)
 
             # Build Prompt
             prompt = f"Prepare the horoscope in {language} language. "
