@@ -22,20 +22,20 @@ def get_zodiac_sign(day, month):
     if (month == 1 and day >= 20) or (month == 2 and day <= 18): return "Aquarius"
     if (month == 2 and day >= 19) or (month == 3 and day <= 20): return "Pisces"
 
-# Image Links (replace with your own image URLs or local paths)
+# Image Links with PNGs
 image_links = {
-    "Aries": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Aries.svg",
-    "Taurus": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Taurus.svg",
-    "Gemini": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Gemini.svg",
-    "Cancer": "https://upload.wikimedia.org/wikipedia/commons/8/88/Cancer.svg",
-    "Leo": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Leo.svg",
-    "Virgo": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Virgo.svg",
-    "Libra": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Libra.svg",
-    "Scorpio": "https://upload.wikimedia.org/wikipedia/commons/2/20/Scorpio.svg",
-    "Sagittarius": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Sagittarius.svg",
-    "Capricorn": "https://upload.wikimedia.org/wikipedia/commons/7/76/Capricorn.svg",
-    "Aquarius": "https://upload.wikimedia.org/wikipedia/commons/2/24/Aquarius.svg",
-    "Pisces": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Pisces.svg"
+    "Aries": "https://www.astrology-zodiac-signs.com/images/aries.png",
+    "Taurus": "https://www.astrology-zodiac-signs.com/images/taurus.png",
+    "Gemini": "https://www.astrology-zodiac-signs.com/images/gemini.png",
+    "Cancer": "https://www.astrology-zodiac-signs.com/images/cancer.png",
+    "Leo": "https://www.astrology-zodiac-signs.com/images/leo.png",
+    "Virgo": "https://www.astrology-zodiac-signs.com/images/virgo.png",
+    "Libra": "https://www.astrology-zodiac-signs.com/images/libra.png",
+    "Scorpio": "https://www.astrology-zodiac-signs.com/images/scorpio.png",
+    "Sagittarius": "https://www.astrology-zodiac-signs.com/images/sagittarius.png",
+    "Capricorn": "https://www.astrology-zodiac-signs.com/images/capricorn.png",
+    "Aquarius": "https://www.astrology-zodiac-signs.com/images/aquarius.png",
+    "Pisces": "https://www.astrology-zodiac-signs.com/images/pisces.png"
 }
 
 # Streamlit Setup
@@ -78,7 +78,7 @@ if st.button("Generate Horoscope"):
 
             # Kundali Sign (Placeholder)
             kundali_sign = "Kanya (Virgo Rashi)"  # Ideally fetched from Astrology API
-            st.image("https://upload.wikimedia.org/wikipedia/commons/f/fb/Virgo.svg",
+            st.image("https://www.astrology-zodiac-signs.com/images/virgo.png",
                      caption=f"Your Kundali Sign (Rashi): {kundali_sign}", use_container_width=True)
 
             # Build Prompt
